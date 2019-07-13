@@ -1,0 +1,17 @@
+---
+- name: Criando {{ apigee_edge_install_path }}
+  file:
+    path: '{{ apigee_edge_install_path }}'
+    state: directory
+    owner: apigee
+    group: apigee
+    mode: 0775
+
+- name: Link /opt/apigee to {{ apigee_edge_install_path }}
+  file:
+    path: /opt/apigee
+    state: link
+    src: '{{ apigee_edge_install_path }}'
+    owner: apigee
+    group: apigee
+  when: apigee_edge_install_path != '/opt/apigee'

@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Start Apigee
+      command: /opt/apigee/apigee-service/bin/apigee-all start
+      

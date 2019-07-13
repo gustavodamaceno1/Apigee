@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Restart Apigee
+      command: /opt/apigee/apigee-service/bin/apigee-all restart

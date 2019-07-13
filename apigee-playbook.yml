@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  max_fail_percentage: 0
+  roles:
+    - role/apigee-bootstrap
+    - role/apigee-base
+  vars:
+    #diretorio base do apigee
+    apigee_install_path: /opt
+    # Diretorio para o arquivo de licença no host do ansible
+    apigee_license_path: /tmp
+
+    #apigee-edge
+
+    apigee_configFile_path: /tmp

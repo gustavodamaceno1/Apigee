@@ -1,0 +1,26 @@
+---
+- block:
+
+  - name: Download bootstrap script from {{ apigee_bootstrap_url }}
+    get_url:
+      url: '{{ apigee_bootstrap_url }}'
+      url_username: '{{ apigee_repository_username }}'
+      url_password: '{{ apigee_repository_password }}'
+      dest: '{{ apigee_bootstrap_path }}'
+      force: yes
+      owner: apigee
+      group: apigee
+      mode: 0644
+      validate_certs: no
+    when: apigee_bootstrap_url is not none
+ 
+  - name: Install Apigee
+    command: bash {{ apigee_bootstrap_path }} apigeeuser={{apigee_repository_username }} apigeepassword={{apigee_repository_password }} JAVA_FIX=C
+    become_method: sudo
+   
+  - name: Install Setup
+    command: /opt/apigee/apigee-service/bin/apigee-service apigee-setup install  
+
+  - name: Install AIO
+    command: /opt/apigee/apigee-setup/bin/setup.sh -p aio -f /tmp/configFile
+    become_method: sudo

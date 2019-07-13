@@ -1,0 +1,5 @@
+---
+- name: Install Java JDK {{ apigee_java_package }}
+  yum:
+    pkg: '{{ apigee_java_package }}'
+    state: present

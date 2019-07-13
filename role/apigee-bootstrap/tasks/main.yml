@@ -1,0 +1,23 @@
+---
+- block: 
+
+  - import_tasks: selinux.yml
+    tags:
+      - selinux
+
+  - import_tasks: account.yml
+    tags:
+      - account
+      - response
+
+  - import_tasks: java.yml
+    when: not apigee_java_package is none
+    tags:
+      - java
+
+  - import_tasks: bootstrap.yml
+    tags:
+      - bootstrap
+
+  become: true
+  become_user: root
